@@ -1,35 +1,29 @@
-let navbar = document.querySelector('.header .navbar')
+let navbar = document.querySelector('.navbar');
 
-document.querySelector('#menu').onclick = () =>{
-  navbar.classList.add('active');
+document.querySelector('#menu-btn').onclick = () =>{
+    navbar.classList.toggle('active');
+    searchForm.classList.remove('active');
+    cartItem.classList.remove('active');
 }
 
-document.querySelector('#close').onclick = () =>{
-  navbar.classList.remove('active');
+let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-btn').onclick = () =>{
+    searchForm.classList.toggle('active');
+    navbar.classList.remove('active');
+    cartItem.classList.remove('active');
 }
 
+let cartItem = document.querySelector('.cart-items-container');
 
-// mousemove home img
-
-document.addEventListener('mousemove', move);
-function move(e){
-  this.querySelectorAll('.move').forEach(layer =>{
-    const speed = layer.getAttribute('data-speed')
-
-    const x = (window.innerWidth - e.pageX*speed)/120
-    const y = (window.innerWidth - e.pageY*speed)/120
-
-    layer.style.transform = `translateX(${x}px) translateY(${y}px)`
-
-  })
+document.querySelector('#cart-btn').onclick = () =>{
+    cartItem.classList.toggle('active');
+    navbar.classList.remove('active');
+    searchForm.classList.remove('active');
 }
 
-
-
-gsap.from('.logo', {opacity: 0, duration: 1, delay: 2, y:10})
-gsap.from('.navbar .nav_item', {opacity: 0, duration: 1, delay: 2.1, y:30, stagger: 0.2})
-
-gsap.from('.title', {opacity: 0, duration: 1, delay: 1.6, y:30})
-gsap.from('.description', {opacity: 0, duration: 1, delay: 1.8, y:30})
-gsap.from('.btn', {opacity: 0, duration: 1, delay: 2.1, y:30})
-gsap.from('.image', {opacity: 0, duration: 1, delay: 2.6, y:30})
+window.onscroll = () =>{
+    navbar.classList.remove('active');
+    searchForm.classList.remove('active');
+    cartItem.classList.remove('active');
+}
